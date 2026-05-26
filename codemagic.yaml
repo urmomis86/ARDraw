@@ -1,0 +1,15 @@
+workflows:
+  android-debug:
+    name: AR Draw APK
+    max_build_duration: 30
+    environment:
+      java: 17
+    scripts:
+      - name: Set up Gradle wrapper
+        script: |
+          gradle wrapper --gradle-version=8.4
+          chmod +x gradlew
+      - name: Build debug APK
+        script: ./gradlew assembleDebug
+    artifacts:
+      - app/build/outputs/apk/debug/app-debug.apk
